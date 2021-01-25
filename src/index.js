@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
+  // 检查代码里面不合理的api
   <React.StrictMode>
     <App />
   </React.StrictMode>,
