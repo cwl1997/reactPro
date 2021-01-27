@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import React,{Component} from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 // import Hello from './components/Hello'
 import Header from './components/Header'
 import List from './components/List'
@@ -35,10 +35,10 @@ export default class App extends Component{
   // 状态在哪里,操作状态的方法就在那里
 
   // 对接受的props进行:类型,必要性的限制
-  static PropTypes = {
-    todos:PropTypes.arrar.isRequired,
-    updateTodo:PropTypes.func.isRequired
-}
+//   static PropTypes = {
+//     todos:PropTypes.arrar.isRequired,
+//     updateTodo:PropTypes.func.isRequired
+// }
 
   // 初始化数据
   state = {todos:[
@@ -70,14 +70,42 @@ export default class App extends Component{
     this.setState({todos:newTodos})
   }
 
+  // deletetodo 用于删除一个todo
+  deleteTodo = (id)=>{
+    // 获取原来的todos
+    const {todos} = this.state
+    const newTodos = todos.filter(todoObj=>{
+      return todoObj.id !== id
+    })
+    this.setState({todos:newTodos})
+  }
+
+  // 全选
+  checkAllTodo = (done)=>{
+    const {todos} = this.state
+    const newTodos = todos.map((todoObj)=>{
+      return {...todoObj,done}
+    })
+    this.setState({todos:newTodos})
+  }
+
+  // 清除所有完成的 
+  clearAllDone = ()=>{
+    const {todos} = this.state
+    const newTodos = todos.filter((todoObj)=>{
+      return !todoObj.done 
+    })
+    this.setState({todos:newTodos})
+  }
+
   render(){
     const {todos} = this.state
     return (
       <div className="todo-container">
           <div className="todo-wrap">
             <Header addTodo={this.addTodo}/>
-            <List todos={todos} updateTodo={this.updateTodo}/>
-            <Footer/>
+            <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo}/>
+            <Footer todos={todos} checkAllTodo={this.checkAllTodo} clearAllDone = {this.clearAllDone}/>
           </div>          
       </div>
     );

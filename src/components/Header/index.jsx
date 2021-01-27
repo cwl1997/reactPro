@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import propTypes from 'prop-types'
 import {nanoid} from 'nanoid'
 import './index.css'
 
 export default class Haeder extends Component {
 
     // 对接受的props进行:类型,必要性的限制
-    static PropTypes = {
-        addTodo:PropTypes.func.isRequired
-    }
+    // static propTypes = {
+    //     addTodo:propTypes.func.isRequired
+    // }
 
     handleKeyUp = (event)=>{
         // 结构赋值获取keyCode,target
