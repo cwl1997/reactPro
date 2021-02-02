@@ -9,7 +9,7 @@ export default class App extends Component {
     )
   }
   getData2=()=>{
-    axios.get('/api2/student').then(
+    axios.get('/api2/car').then(
       response => {console.log('成功了',response.data)},
       error =>{console.log('失败',error)}
     )
